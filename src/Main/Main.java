@@ -6,10 +6,13 @@ import New.NewStudent;
 import New.NewUser;
 
 import javax.swing.*;
+import javax.swing.event.InternalFrameAdapter;
+import javax.swing.event.InternalFrameEvent;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.beans.PropertyVetoException;
 
 public class Main extends JFrame {
 
@@ -26,8 +29,7 @@ public class Main extends JFrame {
         setSize(600,500);
         launchWidgets();
         data = new Data();
-        data.loadUsers();
-        data.loadStudents();
+        load();
         launchEvents();
         setVisible(true);
     }
@@ -96,6 +98,7 @@ public class Main extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 NewUser n = new NewUser(data);
                 dp_m.add(n);
+                packChild(n,e);
             }
         });
         nstudents.addActionListener(new ActionListener() {
@@ -103,6 +106,7 @@ public class Main extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 NewStudent n = new NewStudent(data);
                 dp_m.add(n);
+                packChild(n,e);
             }
         });
         nbook.addActionListener(new ActionListener() {
@@ -110,6 +114,7 @@ public class Main extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 NewBook n = new NewBook(data);
                 dp_m.add(n);
+                packChild(n,e);
             }
         });
         nmagazines.addActionListener(new ActionListener() {
@@ -117,6 +122,7 @@ public class Main extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 NewMagazine n = new NewMagazine(data);
                 dp_m.add(n);
+                packChild(n,e);
             }
         });
         this.addWindowListener(new WindowAdapter() {
@@ -124,6 +130,38 @@ public class Main extends JFrame {
             public void windowClosing(WindowEvent e) {
                 data.saveUsers();
                 data.saveStudents();
+                data.saveBooks();
+                data.saveMagazines();
+            }
+        });
+    }
+
+    private void load() {
+        data.loadUsers();
+        data.loadStudents();
+        data.loadBooks();
+        data.loadMagazines();
+    }
+
+    private void packChild(JInternalFrame child, ActionEvent ev) {
+        child.moveToFront();
+        try {
+            child.setSelected(true);
+        } catch (PropertyVetoException e) {
+            System.out.println(e.getMessage());
+        }
+        int lastx = -20,lasty = -20;
+        for (JInternalFrame c : dp_m.getAllFrames()) {
+            if (c == child) continue;
+            if (c.getX() > lastx) lastx = c.getX();
+            if (c.getY() > lasty) lasty = c.getY();
+        }
+        child.setLocation(lastx + 20, lasty + 20);
+        ((JMenuItem) ev.getSource()).setEnabled(false);
+        child.addInternalFrameListener(new InternalFrameAdapter() {
+            @Override
+            public void internalFrameClosed(InternalFrameEvent e) {
+                ((JMenuItem) ev.getSource()).setEnabled(true);
             }
         });
     }

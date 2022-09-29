@@ -50,7 +50,7 @@ public class NewBook extends JInternalFrame {
         bt_add.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                data.addUser(tf_code.getText(), tf_name.getText(),""+cb_stock.getSelectedIndex());
+                data.addBook(tf_code.getText(), tf_name.getText(),""+cb_stock.getSelectedIndex());
                 tf_code.setText("");
                 tf_name.setText("");
                 cb_stock.setSelectedIndex(0);
