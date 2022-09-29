@@ -87,7 +87,7 @@ public class Data {
             for (String[] student : students) {
                 String tokens = "";
                 for (String field : student) {
-                    tokens = field + ",";
+                    tokens += field + ",";
                 }
                 file.write(tokens);
                 file.write("\n");
