@@ -108,14 +108,14 @@ public class Main extends JFrame {
         nbook.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                NewBook n = new NewBook();
+                NewBook n = new NewBook(data);
                 dp_m.add(n);
             }
         });
         nmagazines.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                NewMagazine n = new NewMagazine();
+                NewMagazine n = new NewMagazine(data);
                 dp_m.add(n);
             }
         });

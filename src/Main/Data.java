@@ -103,5 +103,84 @@ public class Data {
         students.add(student);
     }
 
+    public void loadBooks() {
+        File file = new File("data/books.data");
+        try {
+            Scanner scan = new Scanner(file);
+            while (scan.hasNextLine()) {
+                String line = scan.nextLine();
+                StringTokenizer tokens = new StringTokenizer(line, ",");
+                String[] fields = new String[3];
+                for (int i = 0; i < 2; i++) {
+                    fields[i] = tokens.nextToken();
+                }
+                books.add(fields);
+            }
 
+        }catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void saveBooks() {
+        try {
+            FileWriter file = new FileWriter("data/students.data");
+            for (String[] book : books) {
+                String tokens = "";
+                for (String field : book) {
+                    tokens += field + ",";
+                }
+                file.write(tokens);
+                file.write("\n");
+            }
+            file.close();
+        }catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void addBook(String id, String name, String state) {
+        String[] book = {id,name,state};
+        students.add(book);
+    }
+    public void loadMagazines() {
+        File file = new File("data/magazines.data");
+        try {
+            Scanner scan = new Scanner(file);
+            while (scan.hasNextLine()) {
+                String line = scan.nextLine();
+                StringTokenizer tokens = new StringTokenizer(line, ",");
+                String[] fields = new String[3];
+                for (int i = 0; i < 2; i++) {
+                    fields[i] = tokens.nextToken();
+                }
+                magazines.add(fields);
+            }
+
+        }catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void saveMagazines() {
+        try {
+            FileWriter file = new FileWriter("data/magazines.data");
+            for (String[] magazine : magazines) {
+                String tokens = "";
+                for (String field : magazine) {
+                    tokens += field + ",";
+                }
+                file.write(tokens);
+                file.write("\n");
+            }
+            file.close();
+        }catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void addMagazine(String id, String name, String state) {
+        String[] magazine = {id,name,state};
+        students.add(magazine);
+    }
 }
