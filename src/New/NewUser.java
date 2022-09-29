@@ -1,5 +1,7 @@
 package New;
 
+import Main.Data;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -11,15 +13,15 @@ public class NewUser extends JInternalFrame {
     private JTextField tf_code, tf_name;
     private JPasswordField tf_pass;
     private JButton bt_add, bt_cancel;
-    //private Data data;
+    private Data data;
 
-    public NewUser() {
+    public NewUser(Data d) {
         super("New User", true, true, false ,true);
         setSize(300,150);
         launchWidgets();
         launchEvents();
         setVisible(true);
-        //this.data = data;
+        this.data = d;
     }
 
     private void launchWidgets() {
@@ -43,18 +45,15 @@ public class NewUser extends JInternalFrame {
     }
 
     private void launchEvents() {
-        /*
         bt_add.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                data.addUser(tf_code.getText(), tf_name.getText(), tf_pass.getText(), ""+cb_state.getSelectedIndex());
+                data.addUser(tf_code.getText(), tf_name.getText(), tf_pass.getText());
                 tf_code.setText("");
                 tf_name.setText("");
                 tf_pass.setText("");
-                cb_state.setSelectedIndex(0);
             }
         });
-        */
         bt_cancel.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

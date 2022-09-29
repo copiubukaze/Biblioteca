@@ -11,7 +11,6 @@ public class NewBook extends JInternalFrame {
     private JTextField tf_code, tf_name;
     private JComboBox<String> cb_stock;
     private JButton bt_add, bt_cancel;
-    //private Data data;
 
     public NewBook() {
         super("New Book", true, true, true ,true);

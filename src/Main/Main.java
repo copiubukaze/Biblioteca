@@ -1,3 +1,5 @@
+package Main;
+
 import New.NewBook;
 import New.NewMagazine;
 import New.NewStudent;
@@ -6,6 +8,8 @@ import New.NewUser;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class Main extends JFrame {
 
@@ -15,16 +19,15 @@ public class Main extends JFrame {
     private JMenuItem nuser, ruser, nstudents, rstudents, nbook, nmagazines;
     private JMenuItem reuser, restudents, rebooks, remagazines;
     private JMenuItem lbook, lmagazine;
+    private Data data;
 
     public Main() {
         super("Library");
         setSize(600,500);
         launchWidgets();
-        /*
         data = new Data();
         data.loadUsers();
-        data.loadArticle();
-        */
+        data.loadStudents();
         launchEvents();
         setVisible(true);
     }
@@ -91,14 +94,14 @@ public class Main extends JFrame {
         nuser.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                NewUser n = new NewUser();
+                NewUser n = new NewUser(data);
                 dp_m.add(n);
             }
         });
         nstudents.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                NewStudent n = new NewStudent();
+                NewStudent n = new NewStudent(data);
                 dp_m.add(n);
             }
         });
@@ -114,6 +117,13 @@ public class Main extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 NewMagazine n = new NewMagazine();
                 dp_m.add(n);
+            }
+        });
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                data.saveUsers();
+                data.saveStudents();
             }
         });
     }
