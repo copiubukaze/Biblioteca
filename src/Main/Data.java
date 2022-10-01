@@ -148,7 +148,7 @@ public class Data {
                 String line = scan.nextLine();
                 StringTokenizer tokens = new StringTokenizer(line, ",");
                 String[] fields = new String[3];
-                for (int i = 0; i < 2; i++) {
+                for (int i = 0; i < 3; i++) {
                     fields[i] = tokens.nextToken();
                 }
                 books.add(fields);
@@ -177,9 +177,10 @@ public class Data {
     }
 
     public void addBook(String id, String name, String state) {
-        System.out.println("Books"+state);
-        String[] book = {id,name,(state.equals("0") ? "Free" : "Borrowed")};
+        String statee = (state.equals("0") ? "Free" : "Borrowed");
+        String[] book = {id,name,statee};
         books.add(book);
+        System.out.println(books.get(books.size() - 1)[2]);
     }
 
     public ArrayList<String[]> getBooks() {
@@ -194,7 +195,7 @@ public class Data {
                 String line = scan.nextLine();
                 StringTokenizer tokens = new StringTokenizer(line, ",");
                 String[] fields = new String[3];
-                for (int i = 0; i < 2; i++) {
+                for (int i = 0; i < 3; i++) {
                     fields[i] = tokens.nextToken();
                 }
                 magazines.add(fields);
