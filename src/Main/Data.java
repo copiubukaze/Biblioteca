@@ -124,7 +124,7 @@ public class Data {
 
     public void saveBooks() {
         try {
-            FileWriter file = new FileWriter("data/students.data");
+            FileWriter file = new FileWriter("data/books.data");
             for (String[] book : books) {
                 String tokens = "";
                 for (String field : book) {
