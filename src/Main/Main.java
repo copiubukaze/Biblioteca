@@ -4,6 +4,12 @@ import New.NewBook;
 import New.NewMagazine;
 import New.NewStudent;
 import New.NewUser;
+import Remove.RemoveStudent;
+import Remove.RemoveUser;
+import Report.ReportBooks;
+import Report.ReportMagazines;
+import Report.ReportStudents;
+import Report.ReportUser;
 
 import javax.swing.*;
 import javax.swing.event.InternalFrameAdapter;
@@ -101,6 +107,22 @@ public class Main extends JFrame {
                 packChild(n,e);
             }
         });
+        ruser.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                RemoveUser r = new RemoveUser(data);
+                dp_m.add(r);
+                packChild(r,e);
+            }
+        });
+        reuser.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ReportUser re = new ReportUser(data);
+                dp_m.add(re);
+                packChild(re,e);
+            }
+        });
         nstudents.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -109,6 +131,23 @@ public class Main extends JFrame {
                 packChild(n,e);
             }
         });
+        rstudents.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                RemoveStudent r = new RemoveStudent(data);
+                dp_m.add(r);
+                packChild(r,e);
+            }
+        });
+        restudents.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ReportStudents re = new ReportStudents(data);
+                dp_m.add(re);
+                packChild(re,e);
+            }
+        });
+
         nbook.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -117,12 +156,28 @@ public class Main extends JFrame {
                 packChild(n,e);
             }
         });
+        rebooks.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ReportBooks r = new ReportBooks(data);
+                dp_m.add(r);
+                packChild(r,e);
+            }
+        });
         nmagazines.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 NewMagazine n = new NewMagazine(data);
                 dp_m.add(n);
                 packChild(n,e);
+            }
+        });
+        remagazines.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ReportMagazines r = new ReportMagazines(data);
+                dp_m.add(r);
+                packChild(r,e);
             }
         });
         this.addWindowListener(new WindowAdapter() {
